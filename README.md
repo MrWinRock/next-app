@@ -9,15 +9,15 @@ First, set environment variables, install dependencies, and run the development 
 1. Create a `.env.local` in the project root with:
 
 	```dotenv
-	MONGODB_URI=mongodb+srv://USER:PASS@HOST/db?retryWrites=true&w=majority
-	DB_NAME=next_app
+	MONGODB_URI=
+	DB_NAME=
 	```
 
 2. Install and run (PowerShell):
 
 	```pwsh
-	npm install
-	npm run dev
+	bun install
+	bun run dev
 	```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
