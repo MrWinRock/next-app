@@ -1,24 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini Blog (Next.js + Zod)
+
+This is a [Next.js](https://nextjs.org) mini blog demonstrating Users, Posts, and Comments with MongoDB persistence and Zod validation.
 
 ## Getting Started
 
-First, run the development server:
+First, set environment variables, install dependencies, and run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Create a `.env.local` in the project root with:
+
+	```dotenv
+	MONGODB_URI=mongodb+srv://USER:PASS@HOST/db?retryWrites=true&w=majority
+	DB_NAME=next_app
+	```
+
+2. Install and run (PowerShell):
+
+	```pwsh
+	npm install
+	npm run dev
+	```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Home (`/`) lists posts and includes forms to create a user and a post. Click a post to see its details and add comments.
+
+Note: The app uses MongoDB via the official Node driver. For local dev you can also point `MONGODB_URI` to a local mongod.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## API endpoints
+
+- `GET /api/users` – list users
+- `POST /api/users` – create user `{ username, email, password }`
+- `GET /api/users/:id`, `PUT /api/users/:id`, `DELETE /api/users/:id`
+- `GET /api/posts` – list posts
+- `POST /api/posts` – create post `{ userId, title, content, likes? }`
+- `GET /api/posts/:id`, `PUT /api/posts/:id`, `DELETE /api/posts/:id`
+- `GET /api/comments?postId=...` – list comments for a post
+- `POST /api/comments` – create comment `{ postId, userId, content }`
+- `GET /api/comments/:id`, `PUT /api/comments/:id`, `DELETE /api/comments/:id`
 
 ## Learn More
 
